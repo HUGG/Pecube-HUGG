@@ -21,4 +21,4 @@ Attribution
 Inversion using the Neighbourhood Algorithm
 -------------------------------------------
 
-If performing inversions of thermochronometer data using the [Neighbourhood Algorithm](http://rses.anu.edu.au/~malcolm/na/), be aware that as described in the software package, use of the Neighbourhood Algorithm is restricted to non-commercial research and teaching. Any commerical use requires explicit written permission. More information about the Neighbourhood Algorithm and its use can be found on the [Neighbourhood Algorithm web page](http://rses.anu.edu.au/~malcolm/na/).
+If performing inversions of thermochronometer data using the [Neighbourhood Algorithm](http://rses.anu.edu.au/~malcolm/na/), be aware that as described in the software package, use of the Neighbourhood Algorithm is restricted to non-commercial research and teaching. Any commercial use requires explicit written permission. More information about the Neighbourhood Algorithm and its use can be found on the [Neighbourhood Algorithm web page](http://rses.anu.edu.au/~malcolm/na/).

@@ -186,29 +186,33 @@ do i=1,nfault
       !if (scan(line,':').ne.0) stop 'samex cannot be specified as a range'
       !backspace (77)
       read (77,*) fault(i)%samex(k)
-      if (fault(i)%samex(k) > fault(fault(i)%samef(k))%n) then
-        write (*,*) ''
-        write (*,'(a)') '*** Error in fault_parameters.txt file ***'
-        write (*,'(a,i3,a,i3,a,i3,a)') 'Fault ',i,' is trying to use the x position of particle ',&
-                                     fault(i)%samex(k),' on fault',fault(i)%samef(k),','
-        write (*,'(a,i3,a,i3)') 'but there are only ',fault(fault(i)%samef(k))%n,&
-                                ' points defining fault ',fault(i)%samef(k)
-        write (*,*) ''
-        stop 
+      if (fault(i)%samex(k) > 0) then
+        if (fault(i)%samex(k) > fault(fault(i)%samef(k))%n) then
+          write (*,*) ''
+          write (*,'(a)') '*** Error in fault_parameters.txt file ***'
+          write (*,'(a,i3,a,i3,a,i3,a)') 'Fault ',i,' is trying to use the x position of particle ',&
+                                       fault(i)%samex(k),' on fault',fault(i)%samef(k),','
+          write (*,'(a,i3,a,i3)') 'but there are only ',fault(fault(i)%samef(k))%n,&
+                                  ' points defining fault ',fault(i)%samef(k)
+          write (*,*) ''
+          stop 
+        endif
       endif
       !read (77,'(a1024)') line
       !if (scan(line,':').ne.0) stop 'samey cannot be specified as a range'
       !backspace (77)
       read (77,*) fault(i)%samey(k)
-      if (fault(i)%samey(k) > fault(fault(i)%samef(k))%n) then
-        write (*,*) ''
-        write (*,'(a)') '*** Error in fault_parameters.txt file ***'
-        write (*,'(a,i3,a,i3,a,i3,a)') 'Fault ',i,' is trying to use the y position of particle ',&
-                                     fault(i)%samey(k),' on fault',fault(i)%samef(k),','
-        write (*,'(a,i3,a,i3)') 'but there are only ',fault(fault(i)%samef(k))%n,&
-                                ' points defining fault ',fault(i)%samef(k)
-        write (*,*) ''
-        stop 
+      if (fault(i)%samey(k) > 0) then 
+        if (fault(i)%samey(k) > fault(fault(i)%samef(k))%n) then
+          write (*,*) ''
+          write (*,'(a)') '*** Error in fault_parameters.txt file ***'
+          write (*,'(a,i3,a,i3,a,i3,a)') 'Fault ',i,' is trying to use the y position of particle ',&
+                                       fault(i)%samey(k),' on fault',fault(i)%samef(k),','
+          write (*,'(a,i3,a,i3)') 'but there are only ',fault(fault(i)%samef(k))%n,&
+                                  ' points defining fault ',fault(i)%samef(k)
+          write (*,*) ''
+          stop 
+        endif
       endif
       fault(i)%y(k)=fault(i)%y(k)+zl
     enddo

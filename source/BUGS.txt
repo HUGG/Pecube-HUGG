@@ -1,0 +1,47 @@
+---------------------
+Thursday 14/10/2010
+error in arguments when calling calculate_ages in Pecube.f90 the second time
+(ie when calculating ages at observation points) K and B were inverted.
+
+---------------------
+Thursday 14/10/2010
+error in arguments when calling find_velocity in testFault.f90 the
+second time it is called. Some arguments (xmin,xmax,ymin,ymax) are
+missing
+
+same thing for arguments of the routine move_fault when called in Pecube
+and in testFault
+
+--------------------
+Feb 2011
+Error when writing the information to the binary file containing the Tt information
+for the observed locations (see Christoph email for further explanation)
+
+--------------------
+Monday 21/02/2011
+error in interpolation of temperature when stretching the grid that led to inaccuracies along
+one side of the model. 
+
+--------------------
+Monday 20/3/2011
+error when points where advected far from the box due to fault movement; this caused
+problems when the code was trying to interpolate the Temperature on these points
+
+--------------------
+Monday 20/3/2011
+change to the code with the addition of a C-routine to simplify the output to the
+screen during Pecube run
+
+--------------------
+Monday 20/3/2011
+change to allow for 0 faults in the input/fault_parameters.txt input file when
+the velocity is limited to uplift specified by four points at the corner of the box
+
+-------------------
+Thursday 26/5/2011
+Uninitialized variable in showNA.f90 : iunit
+
+-------------------
+Thursday 26/5/2011
+Uninitialized variable in find_velocity.f90: vyf
+

@@ -1,7 +1,7 @@
 Pecube-HUGG
 ===========
 
-This is a repository for the thermokinematic and thermochronometer age prediction program Pecube. Different versions of Pecube are available as branches. As of 30.12.13, the only available code version is the the HUGG version of Pecube, which was forked from Pecube version 3.0, distributed by Jean Braun in September 2010. We intend to add other versions of Pecube to the repository in the near future.
+This is a repository for the thermokinematic and thermochronometer age prediction program Pecube. Different versions of Pecube are available as branches. As of 30.12.13, the only available code version is the HUGG version of Pecube, which was forked from Pecube version 3.0, distributed by Jean Braun in September 2010. We intend to add other versions of Pecube to the repository in the near future.
 
 Licensing
 ---------

@@ -6,14 +6,12 @@ This is a repository for the thermokinematic and thermochronometer age predictio
 Licensing
 ---------
 
-The HUGG version of Pecube is licensed licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">[Creative Commons Attribution-NonCommercial 3.0 Unported License](http://creativecommons.org/licenses/by-nc/3.0/deed.en_US).
-
-![alt text](http://i.creativecommons.org/l/by-nc/3.0/88x31.png "Creative Commons License")
+Pecube is open source. The particular license restrictions for different versions of Pecube are given in the README.md files for each branch.
 
 Attribution
 -----------
 
- When publishing or presenting results from Pecube experiments please cite the following article(s):
+When publishing or presenting results from Pecube experiments please cite the following article(s):
 
 * Braun, J. (2003). Pecube: A new finite element code to solve the heat transport equation in three dimensions in the Earth’s crust including the effects of a time- varying, finite amplitude surface topography. _Compututers and Geosciences_, 29:787–794.
 * Braun, J., der Beek, van, P., Valla, P., Robert, X., Herman, F., Glotzbach, C., et al. (2012). Quantifying rates of landscape evolution and tectonic processes by thermochronology and numerical modeling of crustal heat transport using PECUBE. _Tectonophysics_, 524–525(0), 1–28. doi:10.1016/j.tecto.2011.12.035

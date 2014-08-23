@@ -4,6 +4,7 @@ The code was forked from Pecube version 3.0, distributed by Jean Braun in Septem
 
 #### Licensing
 The HUGG version of Pecube is licensed licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/deed.en_US">[Creative Commons Attribution-NonCommercial 3.0 Unported License](http://creativecommons.org/licenses/by-nc/3.0/deed.en_US).
+
 ![alt text](http://i.creativecommons.org/l/by-nc/3.0/88x31.png "Creative Commons License")
 
 #### Attribution

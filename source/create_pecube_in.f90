@@ -596,6 +596,12 @@ else !VKP
       topomag=1.d0 !VKP
       topooffset=0.d0 !VKP
 
+      ! Calculate latitude/longitude ranges - dwhipp 11.14
+      xlon1=xlon
+      xlat1=xlat
+      xlon2=xlon+(nx0-1)*dx
+      xlat2=xlat+(ny0-1)*dy
+
       else
 
       allocate (z(-nx0),xz(-nx0),yz(-nx0),iconz(3,-ny0))

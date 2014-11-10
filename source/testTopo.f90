@@ -120,7 +120,7 @@ if (.not.vivi) then
   xlat1=xlat
   xlon2=xlon+(nx0-1)*dx
   xlat2=xlat+(ny0-1)*dy
-  
+
   else
 
   allocate (z(-nx0),xz(-nx0),yz(-nx0),iconz(3,-ny0))
@@ -158,25 +158,40 @@ else
   topomag=1.d0 !VKP
   topooffset=0.d0 !VKP
 
-  else
+  ! Calculate latitude/longitude ranges - dwhipp 11.14
+  xlon1=xlon
+  xlat1=xlat
+  xlon2=xlon+(nx0-1)*dx
+  xlat2=xlat+(ny0-1)*dy
 
-  allocate (z(-nx0),xz(-nx0),yz(-nx0),iconz(3,-ny0))
-    open (8,file='data/'//fnme(1:nfnme)//'/geometry',status='old')
-      do i=1,-nx0
-      read (8,*) xz(i),yz(i)
-      enddo
-      do i=1,-ny0
-      read (8,*) (iconz(k,i),k=1,3)
-      enddo
+  else
+  
+    allocate (zNZ(nx0,ny0))
+    if (fnme(1:nfnme).eq.'Nil') then
+    zNZ=0.d0
+    else
+    open (8,file='data/'//fnme(1:nfnme),status='old')
+    read (8,*) zNZ
     close (8)
-  topomag=1.d0 !VKP
-  topooffset=0.d0 !VKP
-  xlon1=minval(xz)
-  xlat1=minval(yz)
-  xlon2=maxval(xz)
-  xlat2=maxval(yz)
-  xlon=xlon1
-  xlat=xlat1
+    endif
+
+    nx=(nx0-1)/nskip+1
+    ny=(ny0-1)/nskip+1
+    allocate (z(nx*ny))
+    ij=0
+      do j=1,ny0,nskip
+        do i=1,nx0,nskip
+        ij=ij+1
+        z(ij)=zNZ(i,j)
+      enddo
+    enddo
+  
+  deallocate (zNZ)
+
+  xlon1=xlon
+  xlat1=xlat
+  xlon2=xlon+(nx0-1)*dx
+  xlat2=xlat+(ny0-1)*dy
 
   endif
 

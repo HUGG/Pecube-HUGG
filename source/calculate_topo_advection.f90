@@ -29,11 +29,16 @@ do i=1,nfault
       if (fault(i)%conv_factor(k).lt.-eps) then
   	    velo(i)=fault(i)%velo(k)
       else
-        if (i.eq.1) then
+        ! NOTE: This section should probably be adjusted to handle the original
+        ! Pecube fault model the same way as the kink-band model
+        !
+        ! dwhipp - 23.04.2015
+        if (fault(i)%x(2) - fault(i)%x(1) >= 0.0) then
           velo(i)=fault(i)%conv_rate(k)*(fault(i)%conv_factor(k))
-        elseif (i.eq.2) then
+        elseif (fault(i)%x(2) - fault(i)%x(1) < 0.0) then
           velo(i)=fault(i)%conv_rate(k)-fault(1)%conv_rate(k)*(fault(1)%conv_factor(k))
-        else
+        endif
+        if (i > 2) then
           write (*,*) 'Use of constant convergence model with more than 2 fault'
           write (*,*) 'segments is not supported. Exiting.'
           stop

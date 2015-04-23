@@ -83,21 +83,45 @@ do i=1,nfault
     if (fault(i)%faultmodel == 2) then
       if (i == 1) then
         velo_assigned=.false.
-        do k = 1,fault(i)%n-2
-          if (xp-fault(i)%x(k+1) < (1.d0/fault(i)%kbm(k))*(yp-fault(i)%y(k+1))) then
-            if (yp-fault(i)%y(k) >= fault(i)%alpha(k)*(xp-fault(i)%x(k))) then
-              vxf=-velohw*cos(atan(fault(i)%alpha(k)))
-              vzf=-velohw*sin(atan(fault(i)%alpha(k)))
-              velo_assigned=.true.
-              exit
-            else
-              vxf=velofw*cos(atan(fault(i)%alpha(k)))
-              vzf=velofw*sin(atan(fault(i)%alpha(k)))
-              velo_assigned=.true.
-              exit
+        if (fault(i)%x(2) - fault(i)%x(1) >= 0.0) then
+          ! Do this part of the loop if the fault points are given in order of
+          ! decreasing x value
+          !
+          ! This could probably be done in a smarter way, but it works...
+          do k = 1,fault(i)%n-2
+            if (xp-fault(i)%x(k+1) < (1.d0/fault(i)%kbm(k))*(yp-fault(i)%y(k+1))) then
+              if (yp-fault(i)%y(k) >= fault(i)%alpha(k)*(xp-fault(i)%x(k))) then
+                vxf=-velohw*cos(atan(fault(i)%alpha(k)))
+                vzf=-velohw*sin(atan(fault(i)%alpha(k)))
+                velo_assigned=.true.
+                exit
+              else
+                vxf=velofw*cos(atan(fault(i)%alpha(k)))
+                vzf=velofw*sin(atan(fault(i)%alpha(k)))
+                velo_assigned=.true.
+                exit
+              endif
             endif
-          endif
-        enddo
+          enddo
+        else
+          ! Do this part of the loop if the fault points are given in order of
+          ! increasing x value
+          do k = 1,fault(i)%n-2
+            if (xp-fault(i)%x(k+1) >= (1.d0/fault(i)%kbm(k))*(yp-fault(i)%y(k+1))) then
+              if (yp-fault(i)%y(k) >= fault(i)%alpha(k)*(xp-fault(i)%x(k))) then
+                vxf=-velohw*cos(atan(fault(i)%alpha(k)))
+                vzf=-velohw*sin(atan(fault(i)%alpha(k)))
+                velo_assigned=.true.
+                exit
+              else
+                vxf=velofw*cos(atan(fault(i)%alpha(k)))
+                vzf=velofw*sin(atan(fault(i)%alpha(k)))
+                velo_assigned=.true.
+                exit
+              endif
+            endif
+          enddo
+        endif
         if (.not.velo_assigned) then
           if (yp-fault(i)%y(fault(i)%n-1) >= fault(i)%alpha(fault(i)%n-1)*(xp-fault(i)%x(fault(i)%n-1))) then
             vxf=-velohw*cos(fault(i)%alpha(fault(i)%n-1))

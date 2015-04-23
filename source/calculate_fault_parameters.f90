@@ -40,8 +40,7 @@ do i=1,nfault
 
 ! Define kink-band planes for kink-band fault kinematic model
   do k=1,fault(i)%n-2
-    !fault(i)%kbm(k)=tan((atan(fault(i)%alpha(k))+atan(fault(i)%alpha(k+1)))/2.d0 + pi/2.d0)
-    fault(i)%kbm(k)=(fault(i)%alpha(k)+fault(i)%alpha(k+1))/2.d0 + tan(pi/2.d0)
+    fault(i)%kbm(k)=tan((atan(fault(i)%alpha(k))+atan(fault(i)%alpha(k+1)))/2.d0 + pi/2.d0)
   enddo    
 enddo
 

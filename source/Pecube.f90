@@ -1026,7 +1026,7 @@ end module definitions
         if (abs(advect_topo) == 1) then
           do i=1,nfault
             do k=1,fault(i)%n
-              fault(i)%x(k)=fault(i)%x(k)-dt*vxtopo0
+              fault(i)%x(k)=fault(i)%x(k)+dt*(vxtopo+vytopo)
             enddo
           enddo
         endif

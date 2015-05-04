@@ -29,19 +29,13 @@ do i=1,nfault
       if (fault(i)%conv_factor(k).lt.-eps) then
   	    velo(i)=fault(i)%velo(k)
       else
-        ! NOTE: This section should probably be adjusted to handle the original
-        ! Pecube fault model the same way as the kink-band model
-        !
-        ! dwhipp - 23.04.2015
-        if (fault(i)%x(2) - fault(i)%x(1) >= 0.0) then
-          velo(i)=fault(i)%conv_rate(k)*(fault(i)%conv_factor(k))
-        elseif (fault(i)%x(2) - fault(i)%x(1) < 0.0) then
-          velo(i)=fault(i)%conv_rate(k)-fault(1)%conv_rate(k)*(fault(1)%conv_factor(k))
-        endif
         if (i > 2) then
           write (*,*) 'Use of constant convergence model with more than 2 fault'
           write (*,*) 'segments is not supported. Exiting.'
           stop
+        else
+          ! We know that the overthrusting velocity component is (1-lambda)*conv_rate
+          velo(i)=fault(i)%conv_rate(k)*(1.d0-fault(i)%conv_factor(k))
         endif
       endif
     elseif (advect_topo == -1) then                                             ! Calculate optimal topo advection rate by time step
@@ -50,21 +44,6 @@ do i=1,nfault
       write (*,*) 'velocity calculation (advect_topo=1) instead.'
       write (*,*) 'Stopping.'
       stop
-    !  if ((time-fault(i)%timestart(k))*(time-fault(i)%timeend(k)).le.eps) then
-    !    if (fault(i)%conv_factor(k).lt.-eps) then
-    !	    velo(i)=fault(i)%velo(k)
-    !    else
-    !      if (i.eq.1) then
-    !        velo(i)=fault(i)%conv_rate(k)*(fault(i)%conv_factor(k))
-    !      elseif (i.eq.2) then
-    !        velo(i)=fault(i)%conv_rate(k)-fault(1)%conv_rate(k)*(fault(1)%conv_factor(k))
-    !      else
-    !        write (*,*) 'Use of constant convergence model with more than 2 fault'
-    !        write (*,*) 'segments is not supported. Exiting.'
-    !        stop
-    !      endif
-    !    endif
-    !  endif
     else
       write (*,*) 'Bad value, ',advect_topo,' for topographic advection flag. Input value must be'
       write (*,*) '"0", "1" or "-1". Exiting.'
@@ -80,10 +59,14 @@ do i=1,nfault
   
     ! Calculate advection velocity from velo and maxxs, and update topo
     ! advection velocity if this fault has thrust-sense motion
-    if (velo(i) < 0.d0) then
-      if (fault(i)%x(k+1)-fault(i)%x(k) < 0.d0) then
-        if (abs(velo(i)*maxxs(i)) > vxtopo) then
-          vxtopo=velo(i)*maxxs(i)
+    if (velo(i) < -eps) then
+      if (abs(velo(i)*maxxs(i)) > vxtopo) then
+        vxtopo=velo(i)*maxxs(i)
+        
+        if (fault(i)%x(2)-fault(i)%x(1) >= 0.d0) then
+          xn=-fault(i)%xn
+          yn=-fault(i)%yn
+        else
           xn=fault(i)%xn
           yn=fault(i)%yn
         endif

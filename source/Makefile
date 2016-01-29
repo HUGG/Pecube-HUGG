@@ -1,22 +1,20 @@
 .SUFFIXES:.out .o .s .c .F .f .f90 .F90 .e .r .y .yr .ye .l .p .sh .csh .h
 
-# use these lines to produce a scalar version using the gfortran compiler
-# this removes the mpi commands in NA
+#--- COMPILER CONFIGURATION ----------------------------------------------------
+# Only one set of these variables should be defined in this file. Only one set
+# of lines should start with F90FLAGS, F77FLAGS, etc. down to the line that
+# reads "OBJECTS = \". All others should start with a #. Remove the # to enable
+# a given set of compilers.
 
-#FLAGS = -c -O3 -ftree-vectorize
-#FF90 = /usr/local/bin/gfortran
-#FF77 = /usr/local/bin/gfortran -fd-lines-as-comments
-#CC = /usr/local/bin/gcc
+#--- PECUBE FOR FORWARD MODELLING
+# NOTE: Make sure you have a link to the version of the NA algorithm that will
+# not be used for this type of model.
+# For example, you should run the following in a terminal from the source
+# directory.
+#
+# ln -s na.f.ORIG-serial na.f
 
-# Intel compilers on Placentia
-#F90FLAGS = -c -O2
-#F77FLAGS = -c -O2
-#CFLAGS = -c -O2
-#FF90 = /usr/local/intel/composerxe-2011.0.084/bin/intel64/ifort
-#FF77 = /usr/local/intel/composerxe-2011.0.084/bin/intel64/ifort
-#CC = /usr/local/intel/composerxe-2011.0.084/bin/intel64/icc
-
-# GNU compilers on iMac
+# GNU compilers (e.g., gcc, gfortran)
 F90FLAGS = -c -O2
 F77FLAGS = -c -O2 -fd-lines-as-comments -ffixed-line-length-132
 CFLAGS = -c -O2
@@ -24,51 +22,37 @@ FF90 = /usr/local/bin/gfortran
 FF77 = /usr/local/bin/gfortran
 CC = /usr/local/bin/gcc
 
-# use these lines to produce a parallel (mpi) version to parallelize the inversion
-# Note that some compilers will not allow to have an "include" command preceded by a "d" as an indication
-#   of a commented line; if this is the case for your compiler, the routine na.f will not compile properly
-#   You will need to edit the na.f file and remove the "d" in the first column of three lines that
-#   start with include 'mpif.h'
-
-#FLAGS = -c -O
-#FF90 = /usr/local/mpich/bin/mpif90
-#FF77 = /usr/local/mpich/bin/mpif77
-#CC = /usr/local/mpich/bin/mpicc
-
-# Parallel version with Intel compilers on Placentia
+# Intel compilers (e.g., icc, ifort))
 #F90FLAGS = -c -O2
-#F77FLAGS = -c -O2 -fpp -DNA_MPIP=1 -DNA_F77_COMPATIBILITY=0
-##F77FLAGS = -c -O2
+#F77FLAGS = -c -O2
 #CFLAGS = -c -O2
-#FF90 = /usr/local/openmpi.intel/bin/mpif90
-##FF77 = /usr/local/openmpi14.gnu/bin/mpif77 -fd-lines-as-code
-#FF77 = /usr/local/openmpi.intel/bin/mpif77
-#CC = /usr/local/openmpi.intel/bin/mpicc
+#FF90 = /usr/local/intel/composerxe-2011.0.084/bin/intel64/ifort
+#FF77 = /usr/local/intel/composerxe-2011.0.084/bin/intel64/ifort
+#CC = /usr/local/intel/composerxe-2011.0.084/bin/intel64/icc
 
-# Parallel version with GNU compilers on Placentia
+#--- PECUBE FOR INVERSE MODELLING
+# NOTE: Make sure you have a link to the version of the NA algorithm that will
+# be used for this type of model.
+# For example, you should run the following in a terminal from the source
+# directory.
+#
+# ln -s na.f.newNA na.f
+
+# Parallel version with GNU compilers
 #F90FLAGS = -c -O2
 #F77FLAGS = -c -O2 -cpp -DNA_MPIP=1 -DNA_F77_COMPATIBILITY=0
-##F77FLAGS = -c -O2
 #CFLAGS = -c -O2
 #FF90 = /usr/local/openmpi.gcc-1.2.9/bin/mpif90
-##FF77 = /usr/local/openmpi.gcc-1.2.9/bin/mpif77 -fd-lines-as-code
 #FF77 = /usr/local/openmpi.gcc-1.2.9/bin/mpif77
 #CC = /usr/local/openmpi.gcc-1.2.9/bin/mpicc
 
-# MPICH2 with Intel compilers on Placentia
+# Parallel version with Intel compilers
 #F90FLAGS = -c -O2
-#F77FLAGS = -c -O2 -cpp -DNA_MPIP=1 -DNA_F77_COMPATIBILITY=0
-##F77FLAGS = -c -O2
+#F77FLAGS = -c -O2 -fpp -DNA_MPIP=1 -DNA_F77_COMPATIBILITY=0
 #CFLAGS = -c -O2
-#FF90 = /home/dwhipp/software/MPICH2-1.4.1p1_Intel/bin/mpif90
-##FF77 = /home/dwhipp/software/MPICH2-1.4.1p1_Intel/bin/mpif77 -fd-lines-as-code
-#FF77 = /home/dwhipp/software/MPICH2-1.4.1p1_Intel/bin/mpif77
-#CC = /home/dwhipp/software/MPICH2-1.4.1p1_Intel/bin/mpicc
-
-#FLAGS = -c -O
-#FF90 = ifort
-#FF77 = ifort
-#CC = icc
+#FF90 = /usr/local/openmpi.intel/bin/mpif90
+#FF77 = /usr/local/openmpi.intel/bin/mpif77
+#CC = /usr/local/openmpi.intel/bin/mpicc
 
 OBJECTS = \
 Mad_He.o \
@@ -142,7 +126,7 @@ cascade2Pecube.o
 	$(CC) $(CFLAGS) $*.c
 
 Pecube:	$(OBJECTS)
-	$(FF90) -O2 $(OBJECTS) -o ../bin/Pecube 
+	$(FF90) -O2 $(OBJECTS) -o ../bin/Pecube
 
 Test: $(OBJECTS_TEST)
 	$(FF90) -O2 $(OBJECTS_TEST) -o ../bin/Test

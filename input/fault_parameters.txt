@@ -1,0 +1,89 @@
+$ number of faults active at any time during the run
+1
+
+$ two points (in longitude-latitude) defining the y axis of the
+$ coordinate system used to define the faults
+$ the x-axis is to the right of the y-axis
+89.0 26.8 90.5 26.8
+
+$ fault model:
+$ 1 = Original Pecube fault model
+$ 2 = kink-band style fault kinematics
+2
+
+$ first fault: Main Frontal Thrust (underthrusting)
+$ number of segments
+7
+
+$ segment (x,y) coordinates, number of fault if using same coordinates as another
+$ fault, x point number for 'same' fault, y point number for 'same' fault
+-182.0 -38.5 -1 -1 -1
+-126.0 -30.0 -1 -1 -1
+-70.0 -14.9 -1 -1 -1
+-5.1 -14.7 -1 -1 -1
+0.0 0.5 -1 -1 -1
+3.0 3.5 -1 -1 -1
+35.0 3.5 -1 -1 -1
+
+$ number of time intervals to define its motion story
+1
+
+$ Fault timing and velocity definition (each intergal given on one line)
+$ e.g., ftv1, ftv2, ftv3, ftv4, ftv5
+$ ftv1 = Start time for fault slip in Ma
+$ ftv2 = End time for fault slip in Ma
+$ ftv3 = Fault slip rate (thrust is negative, normal is positive)
+$ ftv4 = overthrusting/underthrusting partitioning factor (disabled if negative)
+$        0. = all overthrusting, no underthrusting
+$        1. = all underthrusting, no overthrusting
+$        when using this option, the fault slip velocity specified in ftv3
+$        should be set to 1.
+$ ftv5 = convergence rate between model sides (used only if ftv4 is positive)
+$        positive equals extension, negative equals convergence
+$ **** IMPORTANT: If ftv4 for fault 1 is positive (i.e., partitioning is    ****
+$ **** enabled), the values for ftv1-5 for fault 1 will be used in place of ****
+$ **** any values listed for fault 2.                                       ****
+12.0 0.0 1.0 0.6 -20.0
+
+$ second fault: Main Frontal Thrust (underthrusting)
+$ number of segments
+7
+
+$ segment (x,y) coordinates, number of fault if using same coordinates as another
+$ fault, x point number for 'same' fault, y point number for 'same' fault
+35.0 3.5 1 7 7
+3.0 3.5 1 6 6
+0.0 0.5 1 5 5
+-5.1 -14.7 1 4 4
+-70.0 -14.9 1 3 3
+-126.0 -30.0 1 2 2
+-182.0 -38.5 1 1 1
+
+$ number of time intervals to define its motion story
+1
+
+$ Fault timing and velocity definition (each intergal given on one line)
+$ e.g., ftv1, ftv2, ftv3, ftv4, ftv5
+$ ftv1 = Start time for fault slip in Ma
+$ ftv2 = End time for fault slip in Ma
+$ ftv3 = Fault slip rate (thrust is negative, normal is positive)
+$ ftv4 = overthrusting/underthrusting partitioning factor (disabled if negative)
+$        0. = all overthrusting, no underthrusting
+$        1. = all underthrusting, no overthrusting
+$        when using this option, the fault slip velocity specified in ftv3
+$        should be set to 1.
+$ ftv5 = convergence rate between model sides (used only if ftv4 is positive)
+$        positive equals extension, negative equals convergence
+$ **** IMPORTANT: If ftv4 for fault 1 is positive (i.e., partitioning is    ****
+$ **** enabled), the values for ftv1-5 for fault 1 will be used in place of ****
+$ **** any values listed for fault 2.                                       ****
+12.0 0.0 1.0 0.6 -20.0
+
+$ Duplex parameters listed together on one line
+$ e.g., dp1 dp2 dp3 dp4 dp5
+$ dp1 = time in Ma for onset of duplexing
+$ dp2 = time in Ma for end of duplexing (enter -1. for models running to 0 Ma)
+$ dp3 = rate of duplex-driven uplift in mm/a (or km/Ma)
+$ dp4 = distance to distal edge of duplex (closer to fault trace)
+$ dp5 = distance to interior edge of duplex from fault trace (further from fault trace)
+0.0 0.0 0.0 0.0 0.0

@@ -14,9 +14,6 @@
       real*4 Da2now,Da2then,dr,dt,dt0,Ea,f1,f2,fact,fstep,R,temp,tempf,temps
       real*4,dimension(:),allocatable::age,diag,sup,inf,f
 
-!      D0a2=10.**7.7*3600.*24.*365.25e6
-!      Ea=36.2e3*4.184
-
       if (iflag.eq.1) then
 ! He in Ap
       D0a2=5.e5*3600.*24.*365.25e6
@@ -30,13 +27,14 @@
       D0a2=5.6*3600.*24.*365.25e6
       Ea=120.e3
       elseif (iflag.eq.4) then
-! Ar in Bi 500mic
-      D0a2=160.*3600.*24.*365.25e6
+! Ar in Bi 500mic (750 um effective spherical radius)
+      D0a2=71.1*3600.*24.*365.25e6
       Ea=211.e3
       elseif (iflag.eq.5) then
-! Ar in Mu 500mic
-      D0a2=13.2*3600.*24.*365.25e6
-      Ea=183.e3
+! Ar in Mu 500mic (750 um spherical radius)
+! Updated for Harrison et al., 2009 kinetics
+      D0a2=408.9*3600.*24.*365.25e6
+      Ea=263.6e3
       elseif (iflag.eq.6) then
 ! Ar in Ho 500mic
       D0a2=24.*3600.*24.*365.25e6

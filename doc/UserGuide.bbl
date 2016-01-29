@@ -1,0 +1,54 @@
+\begin{thebibliography}{}
+
+\bibitem[Bernet et~al., 2004]{Bernet2004}
+Bernet, M., Brandon, M., Garver, J., and Molitor, B. (2004).
+\newblock {Fundamentals of detrital zircon fission-track analysis for
+  provenance and exhumation studies with examples from the European Alps}.
+\newblock In Bernet, M. and Spiegel, C., editors, {\em Detrital
+  thermochronology - Provenance analysis, exhumation and landscape evolution of
+  mountain belts}, volume 378, pages 25--36, Boulder, Colorado. Geological
+  Society of America Special Paper.
+
+\bibitem[Braun, 2003]{Braunsub}
+Braun, J. (2003).
+\newblock {Pecube: A new finite element code to solve the heat transport
+  equation in three dimensions in the Earth's crust including the effects of a
+  time-varying, finite amplitude surface topography}.
+\newblock {\em Comput.~Geosci.}, 29:787--794.
+
+\bibitem[Braun et~al., 2006]{BraunBook}
+Braun, J., van~der Beek, P., and Batt, G. (2006).
+\newblock {\em Quantitative Thermochronology}.
+\newblock Cambridge University Press.
+
+\bibitem[House et~al., 1998]{Houseetal1998}
+House, M., Wernicke, B., and Farley, K. (1998).
+\newblock {Dating topography of the Sierra Nevada, California, using apatite
+  (U-Th)/He ages}.
+\newblock {\em Nature}, 396:66--69.
+
+\bibitem[Ketcham et~al., 2000]{Ketcham2000}
+Ketcham, R., Donelick, R., and Donelick, M. (2000).
+\newblock {AFTSolve: A program for multi-kinetic modeling of apatite
+  fission-track data}.
+\newblock {\em Geological Materials Research}, 2(1).
+
+\bibitem[Sambridge, 1999]{Sambridge1999a}
+Sambridge, M. (1999).
+\newblock {Geophysical Inversion with a Neighbourhood Algorithm -I. Searching a
+  parameter space}.
+\newblock {\em Geophys.~J.~Int.}, 138:479--494.
+
+\bibitem[Tippett and Kamp, 1993]{Tippett1993}
+Tippett, J. and Kamp, P. (1993).
+\newblock {Fission track analysis of the late Cenozoic vertical kinematics of
+  continental Pacific Crust, South Island, New Zealand}.
+\newblock {\em J.~Geophys.~Res.}, 98:16,119--16,148.
+
+\bibitem[van~der Beek, 1995]{vanderbeekthesis}
+van~der Beek, P. (1995).
+\newblock {\em {Tectonic evolution of continental rifts: Inferences from
+  numerical modelling and fission track thermochronology}}.
+\newblock PhD thesis, Vrije Universiteit, Amsterdam, the Netherlands.
+
+\end{thebibliography}

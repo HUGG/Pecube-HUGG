@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.7)
+The top-level auxiliary file: UserGuide.aux
+The style file: apalike.bst
+Database file #1: ../../Documents/Latex/abbreviatedjournalnames.bib
+Database file #2: ../../Documents/Latex/references.bib
+You've used 8 entries,
+            1935 wiz_defined-function locations,
+            731 strings with 7557 characters,
+and the built_in function-call counts, 3152 in all, are:
+= -- 315
+> -- 119
+< -- 6
++ -- 38
+- -- 38
+* -- 260
+:= -- 557
+add.period$ -- 25
+call.type$ -- 8
+change.case$ -- 56
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 120
+empty$ -- 222
+format.name$ -- 48
+if$ -- 614
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 8
+newline$ -- 43
+num.names$ -- 26
+pop$ -- 46
+preamble$ -- 1
+purify$ -- 58
+quote$ -- 0
+skip$ -- 94
+stack$ -- 0
+substring$ -- 232
+swap$ -- 16
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 46
+warning$ -- 0
+while$ -- 28
+width$ -- 0
+write$ -- 109

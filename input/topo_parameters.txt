@@ -1,0 +1,113 @@
+$ this is the input file for Pecube
+$ you can add as many comment lines as you wish as long as they start with a dollar sign
+$
+$ (1) the name of the run (also the name of the folder in which the solution is stored)
+$ should be 5 letter long
+RUN01
+
+$ (2) the name of the topography file used (if the name is Nil topo is assume to be flat)
+$     Otherwise the file should contain nx by ny points (see below) defining the topography in meters
+$     Note that the evolution of this topography (in amplitude and offset) will be allowed to
+$     change through time
+$     If the name of the file ends with a slash "/", then Pecube will assume it is a directory
+$     in which a series of topo files (in meters) are to be stored (one per time step), named topo0, topo1, etc
+$     Pecube will also expect to find uplift rate files, named uplift0, uplift1, etc in which an
+$     uplift rate value (in km/Myr) will be stored for each location; similary a set of surface
+$     temperature files will be expected, named temp0, temp1, etc in °C
+$     When this second option is activated, the topography amplification and offset factors are not used
+$     if the number of points in the longitude and latitude directions (next input line)  are negative, the number of points in the
+$     longitude direction (nx) will in fact correspond to the total number of points; the points defining
+$     the topography will be assumed to be randomly distributed (not on a rectangular grid);
+$     the number of points in the latitude direction (ny) will contain the number of triangles connecting
+$     the randomly distributed points.
+$     the topography file should then contain nx triplets of longitude, latitude and height of each point
+$     followed by ny triplets of integer numbers between 1 and nx giving the triangular connectivity
+West-Bhutan-topography-500m.txt
+
+$ (3) the number of points in the longitude and latitude directions, respectively
+$     if they are negative, they correspond to the total number of points and the number of triangles connecting them
+300 400
+
+$ (4) the spacing in degrees of longitude and latitude, respectively
+$     This is not used in case nx and ny are negative (random grid)
+0.005 0.005
+
+$ (5) a skipping factor (1 means all points of the topography are used; 2 means that
+$     every second point is used etc). Note that nx, ny AND nskip define the resolution of the
+$     finite element grid in the horizontal directions
+$     again this is not used in case nx and ny are negative (random grid)
+16
+
+$ (6) the longitude and latitude of the bottom left corner of the topo file
+$170. -43.
+89.0 26.5
+
+$ (7) the number of time steps in the tectonomorphic scenario
+1
+
+$ (8) the erosional time scale (exponential decay rate of topography)
+0.0
+
+$ (9) for each time step +1:
+$ (a) a starting time (in Myr in the past)
+$ (b) an amplification factor for the topography
+$ (c) an offset factor (in km),
+$ (d) an output flag (for this time step: 0=no output / 1=output)
+12.0 1.0 0.0 1
+0.0 1.0 0.0 1
+
+$ (10) a flag for isostasy (1 isostasy on; 0 isostast off)
+$ crustal density (in kg/m3), mantle density (kg/m3), Young modulus (in Pa), poisson's
+$ ratio, elastic plate thickness (in km), size of the FFT grid for elastic rebound
+$ calculations (typically 1024 1024 but must be a power of 2)
+0 2700.0,3200.0,1.d11,0.25,28.8,1024,1024
+
+$ (11) the model thickness (in km), number of points in the z direction, thermal diffusivity in km2/Myr,
+$ temperature at the base of the model (in C), temperature at z=0 (in C), atmospheric lapse rate (in
+$ C/km), heat production in C/My
+50.0,0,35.0,750,25.0,6.0,10.0
+
+$ (12) name of the file containing the thermochronological data
+$ if Nil no date
+$ otherwise it should contain the number of data points (locations)
+$ for each location a line containing sample longitude, latitude, elevation
+$ as well as Apatite He age, error in age, Apatite FT age, error in age
+$ with a negative age corresponding to a non-existing age
+West-Bhutan-bedrock-ages.txt
+
+$ (13) Other Pecube options (each number corresponds to a value in the list)
+$ (a) The default age (in Myr) for rocks that never reach the closure
+$     temperature
+$ (b) A flag to decide which apatite FT routine to use (0 = van der Beek or 1 =
+$     Ketcham)
+$ (c) A flag to decide whether (flag=0) to use the absolute age difference
+$     (between observed and predicted ages) to construct the misfit function or
+$     (flag=1) the difference in the slope of the age-elevation relationship
+$     (for each system)
+$ (d) A flag to decide whether (flag=0) the fault's geometry is updated due to
+$     the movement on other faults or (flag=1) not
+$ (e) The friction coefficient to use in the formula for shear heating
+$     (friction=0 means no shear heating)
+$ (f) A flag to either enable (flag=1) or disable (flag=0) lateral advection of
+$     the model topography. A value of flag=-1 will calculate the topographic
+$     advection velocity for each step in the tectonomorphic scenario
+$ (g) The rate of lateral topographic advection (in mm/yr) normal to the defined
+$     faults when positive or if a negative value is input the code will
+$     calculate an 'optimal' topographic advection velocity
+$ (h) The type of misfit function that should be used in calculating the misfit
+$     between observed and predicted ages. Misfit equations are given in Braun
+$     et al., 2012 (Tectonophysics). Here, 1=Equation 8 (default), 2=Equation 9
+$     and 3=Equation 10.
+$ (i) The number of model free parameters to be used with misfit type 2 (Eqn. 9
+$     of Braun et al., 2012). Note this will automatically be set when using the
+$     NA.
+40.0 1 0 1 0.0 1 -1.0 1 -1
+
+$ (14) A series of 11 flags to determine which age (system) has to be computed
+$ from the thermal histories computed in Pecube
+$ (a-j): Enable various age calculations
+$ (k): Either enables (flag=1) or disables (flag=0) calculation of ages for
+$ all surface particles
+$ ( l ): Either enables (flag=1) or disables (flag=0) output of PTt paths to a
+$ text file. Note that value k must =0 in order to use this option.
+0 1 1 0 0 0 1 0 0 0 1 0

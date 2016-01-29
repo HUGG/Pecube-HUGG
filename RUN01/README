@@ -1,0 +1,5 @@
+Pecube output will be written here and must be processed using "bin/Vtk" to create files
+than can be visualized.
+
+Other models can be stored in any 5 character directory name in the Pecube main directory
+(e.g., TEST1 or MOD01). The output directory is specified in the topo_parameters.txt file.

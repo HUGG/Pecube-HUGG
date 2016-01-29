@@ -1,0 +1,3 @@
+Visualization output files in the .vtk format will be written to this directory.
+
+Output can be produced by running "bin/Test" or "bin/Vtk" from the main Pecube directory.

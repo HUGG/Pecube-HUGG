@@ -110,4 +110,4 @@ $ (k): Either enables (flag=1) or disables (flag=0) calculation of ages for
 $ all surface particles
 $ ( l ): Either enables (flag=1) or disables (flag=0) output of PTt paths to a
 $ text file. Note that value k must =0 in order to use this option.
-0 1 1 0 0 0 1 0 0 0 1 0
+1 1 1 1 1 1 1 1 1 1 1 0

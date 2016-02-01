@@ -41,7 +41,7 @@ module definitions
     double precision,dimension(:),pointer::conv_rate,conv_factor
     double precision xn,yn
     ! Duplex parameters
-    double precision dstart,dend,dinner,douter,dvelo
+    double precision dstart,dend,dinner,douter,dvelo,advect_duplex,vduplexadv
 
   end type faulttype
 
@@ -114,7 +114,7 @@ end module definitions
 
       return
       end
-      
+
 !---------------------------
 
       subroutine writemodels (nd,ntot,models,misfit,ns1,ns2,itmax, &
@@ -229,6 +229,7 @@ end module definitions
       double precision aarMpm,harMpm,arMpi,arMps
       double precision aarHpm,harHpm,arHpi,arHps
       double precision vtopo,vxtopo,vytopo,vxtopo0
+      double precision vxduplex,vyduplex
 
       logical interpol_success,misfit_slope,vivi,l1,calc_surface_ages,PTt_output
 
@@ -325,7 +326,7 @@ end module definitions
 ! second line:
 ! tmax: basal temperature (at z=-zl) (in degC)
 ! tmsl: temperature at mean sea level (z=0) (in degC)
-! tlapse: lapse rate (indegC/km) 
+! tlapse: lapse rate (indegC/km)
 ! nstep: number of stages (the surface topo and exhumatoin rate can be specified at each time stage)
 ! ilog: redundant (dont use)
 ! iterative: iterative solver method (1 = Gauss Siedel with overrelaxation - 2 = Conjugate gradient)
@@ -392,6 +393,8 @@ end module definitions
       vxtopo=0.d0
       vytopo=0.d0
       vxtopo0=0.d0
+      vxduplex=0.d0
+      vyduplex=0.d0
       do istep=1,nstep
       xexhumation(1:nsurf,istep)=xsurf
       yexhumation(1:nsurf,istep)=ysurf
@@ -512,7 +515,7 @@ end module definitions
                                              vxtopo0,iproc,nd)
             endif
 
-            ! All surface particles loop - Track all surface particles if 
+            ! All surface particles loop - Track all surface particles if
             ! calc_surface_ages flag is true - dwhipp 08/12
             if (calc_surface_ages) then
               do kstep=istep,nstep
@@ -566,6 +569,23 @@ end module definitions
               do k=1,fault(i)%n
                 fault(i)%x(k)=fault(i)%x(k)-dt*(vxtopo+vytopo)
               enddo
+            enddo
+          endif
+
+          ! Update duplex position if using duplex advection
+          if (abs(fault(1)%advect_duplex) == 1) then
+            do i = 1, nfault
+              if (fault(i)%advect_duplex == 1) then
+                ! Move duplex using input duplex velocity
+                vxduplex = fault(i)%xn*fault(i)%vduplexadv
+                vyduplex = fault(i)%yn*fault(i)%vduplexadv
+              else
+                ! Move duplex using topographic advection velocity
+                vxduplex = vxtopo*fault(i)%xn
+                vyduplex = vytopo*fault(i)%yn
+              endif
+              fault(i)%dinner = fault(i)%dinner - dt*(vxduplex+vyduplex)
+              fault(i)%douter = fault(i)%douter - dt*(vxduplex+vyduplex)
             enddo
           endif
 
@@ -664,7 +684,7 @@ end module definitions
       endif
 
 ! finds processor topology
-      
+
       allocate (proc(nnode),eproc(nelem))
       call define_proc (nproc,nsurf,nz,proc)
         do ie=1,nelem
@@ -1022,12 +1042,29 @@ end module definitions
           enddo
         endif
 
-! Update fault positions if using topographic advection
+        ! Update fault positions if using topographic advection
         if (abs(advect_topo) == 1) then
           do i=1,nfault
             do k=1,fault(i)%n
               fault(i)%x(k)=fault(i)%x(k)+dt*(vxtopo+vytopo)
             enddo
+          enddo
+        endif
+
+        ! Update duplex position if using duplex advection
+        if (abs(fault(1)%advect_duplex) == 1) then
+          do i = 1, nfault
+            if (fault(i)%advect_duplex == 1) then
+              ! Move duplex using input duplex velocity
+              vxduplex = fault(i)%xn*fault(i)%vduplexadv
+              vyduplex = fault(i)%yn*fault(i)%vduplexadv
+            else
+              ! Move duplex using topographic advection velocity
+              vxduplex = vxtopo*fault(i)%xn
+              vyduplex = vytopo*fault(i)%yn
+            endif
+            fault(i)%dinner = fault(i)%dinner + dt*(vxduplex+vyduplex)
+            fault(i)%douter = fault(i)%douter + dt*(vxduplex+vyduplex)
           enddo
         endif
 
@@ -1168,12 +1205,12 @@ end module definitions
             write (100+istep,rec=krec) t1,t2,t3,t4,t5
           enddo
           deallocate (t2,t2p,t3,t4,t5)
-  
+
   !      jrec=jrec+1
           write (100+istep,rec=jrec+1) sngl(-1.d0),sngl(tprev(1:nsurf,istep)), &
                sngl(zl+zsurfp+(zsurf-zsurfp)*ftime-zdepth(1:nsurf,istep)), &
                sngl(xdepth(1:nsurf,istep)),sngl(ydepth(1:nsurf,istep))
-  
+
         endif
 
 ! calculates ages
@@ -1343,7 +1380,7 @@ end module definitions
           hei(iobs)=wobs1*zsurf(iconsurf(1,ieobs)) &
                    +wobs2*zsurf(iconsurf(2,ieobs)) &
                    +wobs3*zsurf(iconsurf(3,ieobs)) &
-                   +wobs4*zsurf(iconsurf(npe,ieobs)) 
+                   +wobs4*zsurf(iconsurf(npe,ieobs))
           hei(iobs)=hei(iobs)*1000.+min(0.d0,heightobs)
           if (ageheobs.gt.0.) then
             nhe=nhe+1
@@ -1583,12 +1620,12 @@ end module definitions
       contains
         function age_misfit(obs_age,pred_age,sigma_obs_age,misfit_type)
           implicit none
-        
+
           double precision, intent(in) :: obs_age,sigma_obs_age
           integer, intent(in) :: misfit_type
           real*4 :: pred_age
           real*4 :: age_misfit
-        
+
           select case(misfit_type)
           case(1)
             age_misfit=(pred_age-obs_age)**2/sigma_obs_age**2
@@ -1612,7 +1649,7 @@ end module definitions
 ! of the regression between two datasets of length n stored in x and y
 
       implicit none
-      
+
       integer n
       double precision x(n),y(n),xmean,ymean,intercept,slope
 

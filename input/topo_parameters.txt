@@ -1,5 +1,17 @@
-$ this is the input file for Pecube
-$ you can add as many comment lines as you wish as long as they start with a dollar sign
+$ This is the general input file for Pecube-HUGG v0.2
+$ you can add as many comment lines as you wish as long as they start with a
+$ dollar sign
+$
+$ This example model design is based on the models of exhumation of the Himalaya
+$ of western Bhutan described in Coutand et al. (2014):
+$
+$ Coutand, I., Whipp, D. M., Grujic, D., Bernet, M., Fellin, M. G., Bookhagen,
+$   B., Landry, K., Ghalley, S. & Duncan, C. (2014). Geometry and kinematics of
+$   the Main Himalayan Thrust and Neogene crustal exhumation in the Bhutanese
+$   Himalaya derived from inversion of multithermochronologic data. Journal of
+$   Geophysical Research: Solid Earth, 119(2), 1446-1481.
+$
+$-------------------------------------------------------------------------------
 $
 $ (1) the name of the run (also the name of the folder in which the solution is stored)
 $ should be 5 letter long
@@ -36,10 +48,9 @@ $ (5) a skipping factor (1 means all points of the topography are used; 2 means 
 $     every second point is used etc). Note that nx, ny AND nskip define the resolution of the
 $     finite element grid in the horizontal directions
 $     again this is not used in case nx and ny are negative (random grid)
-16
+8
 
 $ (6) the longitude and latitude of the bottom left corner of the topo file
-$170. -43.
 89.0 26.5
 
 $ (7) the number of time steps in the tectonomorphic scenario
@@ -65,7 +76,7 @@ $ calculations (typically 1024 1024 but must be a power of 2)
 $ (11) the model thickness (in km), number of points in the z direction, thermal diffusivity in km2/Myr,
 $ temperature at the base of the model (in C), temperature at z=0 (in C), atmospheric lapse rate (in
 $ C/km), heat production in C/My
-50.0,0,35.0,750,25.0,6.0,10.0
+50.0,13,35.0,750,25.0,6.0,10.0
 
 $ (12) name of the file containing the thermochronological data
 $ if Nil no date
@@ -110,4 +121,4 @@ $ (k): Either enables (flag=1) or disables (flag=0) calculation of ages for
 $ all surface particles
 $ ( l ): Either enables (flag=1) or disables (flag=0) output of PTt paths to a
 $ text file. Note that value k must =0 in order to use this option.
-0 1 1 0 0 0 1 0 0 0 1 0
+1 1 1 1 1 1 1 1 1 1 1 0

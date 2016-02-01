@@ -915,9 +915,9 @@ void ketch_main_(int *ntime,float ketchtime[],float ketchtemp[],double *alo,doub
   for(i=0;i<numPDFPts;i++) pdfAxis[i] = (double)(i*1.0+0.5)*20.0/numPDFPts;
 
 //for (i=0;i<*ntime;i++)printf("time( %i )=%f and temp( %i )=%f \n",i,ketchtime[i],i,ketchtemp[i]);
-fg = fopen("Tt_test.dat","wt");
-for (i=0;i<*ntime;i++) fprintf(fg,"%f %f \n",ketchtime[i],ketchtemp[i]);
-fclose(fg);
+//fg = fopen("Tt_test.dat","wt");
+//for (i=0;i<*ntime;i++) fprintf(fg,"%f %f \n",ketchtime[i],ketchtemp[i]);
+//fclose(fg);
 
 
 

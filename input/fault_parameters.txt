@@ -1,5 +1,20 @@
+$ This is the fault parameters input file for Pecube-HUGG v0.2
+$ you can add as many comment lines as you wish as long as they start with a
+$ dollar sign
+$
+$ This example model design is based on the models of exhumation of the Himalaya
+$ of western Bhutan described in Coutand et al. (2014):
+$
+$ Coutand, I., Whipp, D. M., Grujic, D., Bernet, M., Fellin, M. G., Bookhagen,
+$   B., Landry, K., Ghalley, S. & Duncan, C. (2014). Geometry and kinematics of
+$   the Main Himalayan Thrust and Neogene crustal exhumation in the Bhutanese
+$   Himalaya derived from inversion of multithermochronologic data. Journal of
+$   Geophysical Research: Solid Earth, 119(2), 1446-1481.
+$
+$-------------------------------------------------------------------------------
+
 $ number of faults active at any time during the run
-1
+2
 
 $ two points (in longitude-latitude) defining the y axis of the
 $ coordinate system used to define the faults
@@ -85,5 +100,16 @@ $ dp1 = time in Ma for onset of duplexing
 $ dp2 = time in Ma for end of duplexing (enter -1. for models running to 0 Ma)
 $ dp3 = rate of duplex-driven uplift in mm/a (or km/Ma)
 $ dp4 = distance to distal edge of duplex (closer to fault trace)
-$ dp5 = distance to interior edge of duplex from fault trace (further from fault trace)
-0.0 0.0 0.0 0.0 0.0
+$ dp5 = distance to interior edge of duplex from fault trace (further from fault
+$       trace)
+$ dp6 = flag to enable or disable advection of the duplex zone when using
+$       topographic advection
+$       0 = Duplex advection disabled
+$       1 = Duplex advected perpendicular to faults at rate specified in dp7
+$      -1 = Duplex advected perpendicular to faults at topographic advection
+$       velocity
+$ dp7 = Duplex advection velocity (ignored if dp6 = 0 or -1)
+$       Velocities applied perpendicular to the fault trace with values that
+$       follow the coordinate axes (e.g., negative velocities in negative x or y
+$       directions.)
+0.0 0.0 0.0 0.0 0.0 0 0.0

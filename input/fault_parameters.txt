@@ -1,5 +1,5 @@
 $ number of faults active at any time during the run
-1
+2
 
 $ two points (in longitude-latitude) defining the y axis of the
 $ coordinate system used to define the faults
@@ -85,5 +85,16 @@ $ dp1 = time in Ma for onset of duplexing
 $ dp2 = time in Ma for end of duplexing (enter -1. for models running to 0 Ma)
 $ dp3 = rate of duplex-driven uplift in mm/a (or km/Ma)
 $ dp4 = distance to distal edge of duplex (closer to fault trace)
-$ dp5 = distance to interior edge of duplex from fault trace (further from fault trace)
-0.0 0.0 0.0 0.0 0.0
+$ dp5 = distance to interior edge of duplex from fault trace (further from fault
+$       trace)
+$ dp6 = flag to enable or disable advection of the duplex zone when using
+$       topographic advection
+$       0 = Duplex advection disabled
+$       1 = Duplex advected perpendicular to faults at rate specified in dp7
+$      -1 = Duplex advected perpendicular to faults at topographic advection
+$       velocity
+$ dp7 = Duplex advection velocity (ignored if dp6 = 0 or -1)
+$       Velocities applied perpendicular to the fault trace with values that
+$       follow the coordinate axes (e.g., negative velocities in negative x or y
+$       directions.)
+0.0 0.0 0.0 0.0 0.0 0 0.0

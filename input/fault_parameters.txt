@@ -1,3 +1,18 @@
+$ This is the fault parameters input file for Pecube-HUGG v0.2
+$ you can add as many comment lines as you wish as long as they start with a
+$ dollar sign
+$
+$ This example model design is based on the models of exhumation of the Himalaya
+$ of western Bhutan described in Coutand et al. (2014):
+$
+$ Coutand, I., Whipp, D. M., Grujic, D., Bernet, M., Fellin, M. G., Bookhagen,
+$   B., Landry, K., Ghalley, S. & Duncan, C. (2014). Geometry and kinematics of
+$   the Main Himalayan Thrust and Neogene crustal exhumation in the Bhutanese
+$   Himalaya derived from inversion of multithermochronologic data. Journal of
+$   Geophysical Research: Solid Earth, 119(2), 1446-1481.
+$
+$-------------------------------------------------------------------------------
+
 $ number of faults active at any time during the run
 2
 

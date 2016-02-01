@@ -21,15 +21,17 @@ Example model and data
 ----------------------
 
 This version of Pecube includes example model input files (fault_parameters.txt, topo_parameters.txt), and topographic and bedrock age data from western Bhutan.
-This data and the model designs are described in detail in Coutand et al. (2014).
+This data and the model designs are described in detail in Coutand et al. (2014)[1].
 
 * Coutand, I., Whipp, D. M., Grujic, D., Bernet, M., Fellin, M. G., Bookhagen, B., Landry, K., Ghalley, S. & Duncan, C. (2014). Geometry and kinematics of the Main Himalayan Thrust and Neogene crustal exhumation in the Bhutanese Himalaya derived from inversion of multithermochronologic data. Journal of Geophysical Research: Solid Earth, 119(2), 1446-1481.
+
+[1] https://dx.doi.org/10.1002/2013JB010891
 
 Data inversion using the Neighbourhood Algorithm
 ------------------------------------------------
 
-If performing inversions of thermochronometer data using the Neighbourhood Algorithm[1], be aware that as described in the software package, use of the Neighbourhood Algorithm is restricted to non-commercial research and teaching.
+If performing inversions of thermochronometer data using the Neighbourhood Algorithm[2], be aware that as described in the software package, use of the Neighbourhood Algorithm is restricted to non-commercial research and teaching.
 Any commercial use requires explicit written permission.
-More information about the Neighbourhood Algorithm and its use can be found on the Neighbourhood Algorithm web page[1].
+More information about the Neighbourhood Algorithm and its use can be found on the Neighbourhood Algorithm web page[2].
 
-[1] http://rses.anu.edu.au/~malcolm/na/
+[2] http://rses.anu.edu.au/~malcolm/na/

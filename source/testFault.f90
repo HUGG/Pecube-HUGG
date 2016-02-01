@@ -38,7 +38,7 @@ module definitions
     double precision,dimension(:),pointer::conv_rate,conv_factor
     double precision xn,yn
     ! Duplex parameters
-    double precision dstart,dend,dinner,douter,dvelo
+    double precision dstart,dend,dinner,douter,dvelo,advect_duplex,vduplexadv
 
   end type faulttype
 
@@ -68,6 +68,7 @@ double precision xmin,xmax,ymin,ymax,zmin,zmax
 double precision dt,time,xl,yl,zl,xlon1,xlat1,xlon2,xlat2
 double precision timesteps(1000)
 double precision :: vtopo,vxtopo,vytopo,vxtopo0
+double precision :: vxduplex,vyduplex
 double precision :: eps,xy_mean,cur_depth,fact
 character iq*1
 integer :: advect_topo
@@ -120,6 +121,8 @@ zmax=zl
 vxtopo=0.d0
 vytopo=0.d0
 vxtopo0=0.d0
+vxduplex=0.d0
+vyduplex=0.d0
 
 ! Calculate proper z-node spacing if nz is zero
 ! cspath and dwhipp 11/07
@@ -237,6 +240,22 @@ do istep=nstep,1,-1
         do k=1,fault(i)%n
           fault(i)%x(k)=fault(i)%x(k)+dt*(vxtopo+vytopo)
         enddo
+      enddo
+    endif
+    ! Update duplex position if using duplex advection
+    if (abs(fault(1)%advect_duplex) == 1) then
+      do i = 1, nfault
+        if (fault(i)%advect_duplex == 1) then
+          ! Move duplex using input duplex velocity
+          vxduplex = fault(i)%xn*fault(i)%vduplexadv
+          vyduplex = fault(i)%yn*fault(i)%vduplexadv
+        else
+          ! Move duplex using topographic advection velocity
+          vxduplex = vxtopo*fault(i)%xn
+          vyduplex = vytopo*fault(i)%yn
+        endif
+        fault(i)%dinner = fault(i)%dinner + dt*(vxduplex+vyduplex)
+        fault(i)%douter = fault(i)%douter + dt*(vxduplex+vyduplex)
       enddo
     endif
     if (fltflag.eq.1) call move_fault (fault,faultp,nfault,dt,time,xmin,xmax,  &

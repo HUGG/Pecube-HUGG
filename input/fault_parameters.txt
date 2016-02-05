@@ -95,7 +95,7 @@ $ **** any values listed for fault 2.                                       ****
 12.0 0.0 1.0 0.6 -20.0
 
 $ Duplex parameters listed together on one line
-$ e.g., dp1 dp2 dp3 dp4 dp5
+$ e.g., dp1 dp2 dp3 dp4 dp5 dp6 dp7
 $ dp1 = time in Ma for onset of duplexing
 $ dp2 = time in Ma for end of duplexing (enter -1. for models running to 0 Ma)
 $ dp3 = rate of duplex-driven uplift in mm/a (or km/Ma)

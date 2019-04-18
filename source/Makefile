@@ -27,6 +27,7 @@ CC = gcc
 #F90FLAGS = -c -O2
 #F77FLAGS = -c -O2 -fd-lines-as-comments -ffixed-line-length-132
 #CFLAGS = -c -O2
+#LDFLAGS =
 #FF90 = /usr/local/bin/gfortran
 #FF77 = /usr/local/bin/gfortran
 #CC = /usr/local/bin/gcc
@@ -35,6 +36,7 @@ CC = gcc
 #F90FLAGS = -c -O2
 #F77FLAGS = -c -O2
 #CFLAGS = -c -O2
+#LDFLAGS =
 #FF90 = /usr/local/intel/composerxe-2011.0.084/bin/intel64/ifort
 #FF77 = /usr/local/intel/composerxe-2011.0.084/bin/intel64/ifort
 #CC = /usr/local/intel/composerxe-2011.0.084/bin/intel64/icc
@@ -138,16 +140,16 @@ Pecube:	$(OBJECTS)
 	$(FF90) -O2 $(OBJECTS) -o ../bin/Pecube $(LDFLAGS)
 
 Test: $(OBJECTS_TEST)
-	$(FF90) -O2 $(OBJECTS_TEST) -o ../bin/Test
+	$(FF90) -O2 $(OBJECTS_TEST) -o ../bin/Test $(LDFLAGS)
 
 Vtk: $(OBJECTS_VTK)
-	$(FF90) -O2 $(OBJECTS_VTK) -o ../bin/Vtk
+	$(FF90) -O2 $(OBJECTS_VTK) -o ../bin/Vtk $(LDFLAGS)
 
 ShowNA:	$(OBJECTS_NA)
-	$(FF90) -O2 $(OBJECTS_NA) -o ../bin/ShowNA
+	$(FF90) -O2 $(OBJECTS_NA) -o ../bin/ShowNA $(LDFLAGS)
 
 Cascade2Pecube:	$(OBJECTS_CASCADE)
-	$(FF90) -O2 $(OBJECTS_CASCADE) -o ../bin/Cascade2Pecube
+	$(FF90) -O2 $(OBJECTS_CASCADE) -o ../bin/Cascade2Pecube $(LDFLAGS)
 
 all: $(OBJECTS) $(OBJECTS_TEST)  $(OBJECTS_VTK)
 	make Pecube

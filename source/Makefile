@@ -135,7 +135,7 @@ cascade2Pecube.o
 	$(CC) $(CFLAGS) $*.c
 
 Pecube:	$(OBJECTS)
-	$(FF90) -O2 $(OBJECTS) -o ../bin/Pecube
+	$(FF90) -O2 $(OBJECTS) -o ../bin/Pecube $(LDFLAGS)
 
 Test: $(OBJECTS_TEST)
 	$(FF90) -O2 $(OBJECTS_TEST) -o ../bin/Test

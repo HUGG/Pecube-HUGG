@@ -6,13 +6,10 @@
 # reads "OBJECTS = \". All others should start with a #. Remove the # to enable
 # a given set of compilers.
 
-#--- PECUBE FOR FORWARD MODELLING
-# NOTE: Make sure you have a link to the version of the NA algorithm that will
-# not be used for this type of model.
-# For example, you should run the following in a terminal from the source
-# directory.
-#
-# ln -s na.f.ORIG-serial na.f
+#--- PECUBE FOR FORWARD MODELLING ----------------------------------------------
+# The default behavior is for Pecube to build for running forward models. If you
+# are interested in using Pecube for inverse modelling, please comment out the
+# compiler options here and try one of the options in the section below.
 
 # Default compiler options (slow, choose a better set below)
 F90FLAGS = -c -O0 -fprofile-arcs -ftest-coverage
@@ -41,13 +38,15 @@ CC = gcc
 #FF77 = /usr/local/intel/composerxe-2011.0.084/bin/intel64/ifort
 #CC = /usr/local/intel/composerxe-2011.0.084/bin/intel64/icc
 
-#--- PECUBE FOR INVERSE MODELLING
-# NOTE: Make sure you have a link to the version of the NA algorithm that will
-# be used for this type of model.
-# For example, you should run the following in a terminal from the source
-# directory.
+#--- PECUBE FOR INVERSE MODELLING ----------------------------------------------
+# NOTE: In order to compile Pecube for inverse modelling you need to replace the
+# na.f file with another version. The options are na.f.ORIG for the original NA
+# code or na.f.newNA for the more efficient updated version (recommended). To
+# use one of these options, simply rename the original na.f file and replace it
+# with one of the options. For example:
 #
-# ln -s na.f.newNA na.f
+# mv na.f na.f.serial
+# mv na.f.newNA na.f
 
 # Parallel version with GNU compilers
 #F90FLAGS = -c -O2

@@ -18,7 +18,7 @@
 F90FLAGS = -c -O0 -fprofile-arcs -ftest-coverage
 F77FLAGS = -c -O0 -fd-lines-as-comments -ffixed-line-length-132 -fprofile-arcs -ftest-coverage
 CFLAGS = -c -O2 -fprofile-arcs -ftest-coverage
-LFLAGS = -lgcov --coverage
+LDFLAGS = -lgcov --coverage
 FF90 = gfortran
 FF77 = gfortran
 CC = gcc

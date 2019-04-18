@@ -8,6 +8,8 @@ script:
   - make all
   - cd ..
   - bin/Test
+  - bin/Pecube
+  - bin/Vtk
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

@@ -1,3 +1,5 @@
+![Travis CI status](https://travis-ci.org/HUGG/Pecube-HUGG.svg?branch=master)
+
 Pecube-HUGG
 ===========
 

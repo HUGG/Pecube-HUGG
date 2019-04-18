@@ -7,6 +7,7 @@ script:
   - cd source
   - make all
   - cd ..
+  - bin/Test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

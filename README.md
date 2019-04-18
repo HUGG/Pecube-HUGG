@@ -1,7 +1,8 @@
 Pecube-HUGG
 ===========
 
-![Travis CI status](https://travis-ci.org/HUGG/Pecube-HUGG.svg?branch=master) [![codecov](https://codecov.io/gh/HUGG/Pecube-HUGG/branch/master/graph/badge.svg)](https://codecov.io/gh/HUGG/Pecube-HUGG)
+![Travis CI status](https://travis-ci.org/HUGG/Pecube-HUGG.svg?branch=master) 
+<!-- [![codecov](https://codecov.io/gh/HUGG/Pecube-HUGG/branch/master/graph/badge.svg)](https://codecov.io/gh/HUGG/Pecube-HUGG) -->
 
 
 This is a repository for the Helsinki University Geodynamics Group (HUGG) version of the thermokinematic and thermochronometer age prediction program Pecube (Pecube-HUGG).

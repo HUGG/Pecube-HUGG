@@ -12,13 +12,22 @@
 # compiler options here and try one of the options in the section below.
 
 # Default compiler options (slow, choose a better set below)
-F90FLAGS = -c -O0 -fprofile-arcs -ftest-coverage
-F77FLAGS = -c -O0 -fd-lines-as-comments -ffixed-line-length-132 -fprofile-arcs -ftest-coverage
-CFLAGS = -c -O2 -fprofile-arcs -ftest-coverage
-LDFLAGS = -lgcov --coverage
+F90FLAGS = -c -O0
+F77FLAGS = -c -O0 -fd-lines-as-comments -ffixed-line-length-132
+CFLAGS = -c -O0
+LDFLAGS = 
 FF90 = gfortran
 FF77 = gfortran
 CC = gcc
+
+# Codecov compiler options (slow, choose a better set below)
+#F90FLAGS = -c -O0 -fprofile-arcs -ftest-coverage
+#F77FLAGS = -c -O0 -fd-lines-as-comments -ffixed-line-length-132 -fprofile-arcs -ftest-coverage
+#CFLAGS = -c -O0 -fprofile-arcs -ftest-coverage
+#LDFLAGS = -lgcov --coverage
+#FF90 = gfortran
+#FF77 = gfortran
+#CC = gcc
 
 # GNU compilers (e.g., gcc, gfortran)
 #F90FLAGS = -c -O2

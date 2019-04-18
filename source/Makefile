@@ -15,9 +15,9 @@
 # ln -s na.f.ORIG-serial na.f
 
 # GNU compilers (e.g., gcc, gfortran)
-F90FLAGS = -c -O2
-F77FLAGS = -c -O2 -fd-lines-as-comments -ffixed-line-length-132
-CFLAGS = -c -O2
+F90FLAGS = -c -O2 -fprofile-arcs -ftest-coverage
+F77FLAGS = -c -O2 -fd-lines-as-comments -ffixed-line-length-132 -fprofile-arcs -ftest-coverage
+CFLAGS = -c -O2 -coverage
 #FF90 = /usr/local/bin/gfortran
 #FF77 = /usr/local/bin/gfortran
 #CC = /usr/local/bin/gcc

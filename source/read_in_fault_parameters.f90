@@ -379,6 +379,9 @@ do i=1,nfault
         read (line,*) fault(i)%conv_rate(k)
       endif
     endif
+  enddo
+  ! Do this in a separate loop to make sure timestart is OK when using wildcards
+  do k=1,fault(i)%nstep
     if (partition .and. i == 2) then
       fault(i)%timestart(k)=fault(1)%timestart(k)
       fault(i)%timeend(k)=fault(1)%timeend(k)
